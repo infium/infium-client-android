@@ -1,0 +1,16 @@
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+    <item android:id="@+id/button"
+        android:title="Button"
+        android:icon="@drawable/ic_action_new"
+        app:showAsAction="ifRoom"/>
+    <!-- item android:id="@+id/action_view"
+        android:title="View other"
+        app:showAsAction="never"/>
+    <item android:id="@+id/action_email"
+        android:title="E-mail other"
+        app:showAsAction="never"/>
+    <item android:id="@+id/action_reverse"
+        android:title="Reverse other"
+        app:showAsAction="never"/ -->
+</menu>

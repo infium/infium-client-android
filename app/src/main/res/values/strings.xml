@@ -1,0 +1,7 @@
+<resources>
+
+    <string name="app_name">Infium</string>
+    <string name="login">Login</string>
+    <string name="preference_file_key">com.infium.android.PREFERENCE_FILE_KEY</string>
+
+</resources>
