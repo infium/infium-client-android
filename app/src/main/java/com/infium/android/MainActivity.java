@@ -15,10 +15,8 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
-
 import org.json.JSONException;
 import org.json.JSONObject;
-
 import java.io.BufferedReader;
 import java.io.DataOutputStream;
 import java.io.IOException;
@@ -34,15 +32,12 @@ public class MainActivity extends AppCompatActivity {
     public final String LOG_TAG = MainActivity.class.getSimpleName();
     public final String DEFAULT_URL = "https://infium-eu.appspot.com/api/";
     public final static String DEFAULT_COLOR = "#923E9E";
-
     public final static String EXTRA_METHOD = "com.infium.android.METHOD";
     public final static String EXTRA_URL = "com.infium.android.URL";
     public final static String EXTRA_TITLE_BAR_COLOR = "com.infium.android.TITLE_BAR_COLOR";
     public final static String EXTRA_COMPANY = "com.infium.android.COMPANY";
     public final static String EXTRA_BODY = "com.infium.android.BODY";
-
     public final static String EXTRA_BASEURL = "com.infium.android.BASEURL";
-
     private static String uniqueID = null;
     private static final String PREF_UNIQUE_ID = "com.infium.android.PREF_UNIQUE_ID";
 
@@ -61,7 +56,6 @@ public class MainActivity extends AppCompatActivity {
         return uniqueID;
     }
 
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -77,9 +71,6 @@ public class MainActivity extends AppCompatActivity {
     @Override
     public void onResume() {
         super.onResume();
-
-
-
         redrawButtons();
     }
 
@@ -109,7 +100,6 @@ public class MainActivity extends AppCompatActivity {
 
             usernameField.setEnabled(true);
             passwordField.setEnabled(true);
-
         }else{
             EditText usernameField = (EditText)findViewById(R.id.username);
             EditText passwordField = (EditText)findViewById(R.id.password);
@@ -139,8 +129,6 @@ public class MainActivity extends AppCompatActivity {
             }catch (Exception e){
                 Log.e(LOG_TAG, "", e);
             }
-
-
         }
 
         if (token.equals("")){
@@ -149,8 +137,6 @@ public class MainActivity extends AppCompatActivity {
             findViewById(R.id.username).clearFocus();
             findViewById(R.id.password).clearFocus();
         }
-
-
     }
 
     public void menuButtonTapped(View v) {
@@ -173,7 +159,6 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void loginLogoutButtonTapped(View v) {
-
         SharedPreferences prefs = getSharedPreferences(getString(R.string.preference_file_key), Context.MODE_PRIVATE);
         String token = prefs.getString("token", "");
 
@@ -222,9 +207,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private class Login extends AsyncTask<Object, Void, String> {
-
         protected String doInBackground(Object... params) {
-
             SharedPreferences.Editor editor2 = getSharedPreferences(getString(R.string.preference_file_key), Context.MODE_PRIVATE).edit();
             editor2.putString("url", (String)params[0]);
             editor2.putString("company", (String)params[1]);
@@ -299,7 +282,6 @@ public class MainActivity extends AppCompatActivity {
                     SharedPreferences.Editor editor = getSharedPreferences(getString(R.string.preference_file_key), Context.MODE_PRIVATE).edit();
                     editor.putString("token", token);
                     editor.apply();
-
                 } catch (JSONException e) {
                     Log.d(LOG_TAG, "Could not get the new token, could be the wrong username, password or a server error", e);
 
@@ -307,7 +289,6 @@ public class MainActivity extends AppCompatActivity {
                     editor.putString("token", null);
                     editor.apply();
                 }
-
             } catch (IOException e) {
                 Log.e(LOG_TAG, "", e);
                 return "";
@@ -323,18 +304,14 @@ public class MainActivity extends AppCompatActivity {
                     }
                 }
             }
-
-
             return output;
         }
 
         protected void onPostExecute(String result) {
-
             SharedPreferences prefs = getSharedPreferences(getString(R.string.preference_file_key), Context.MODE_PRIVATE);
             String token = prefs.getString("token", null);
 
             if (token != null){
-
                 EditText usernameField = (EditText)findViewById(R.id.username);
                 EditText passwordField = (EditText)findViewById(R.id.password);
 
@@ -342,16 +319,13 @@ public class MainActivity extends AppCompatActivity {
                 passwordField.setText("");
 
                 goToMenu();
-
             }else{
                 Toast.makeText(getApplicationContext(), "Wrong username and/or password", Toast.LENGTH_SHORT).show();
             }
         }
     }
 
-
     private class Logout extends AsyncTask<Object, Void, JSONObject> {
-
         protected JSONObject doInBackground(Object... params) {
             String urlParam = (String)params[0];
             String companyParam = (String)params[1];
@@ -361,9 +335,7 @@ public class MainActivity extends AppCompatActivity {
             BufferedReader reader = null;
 
             String output = null;
-
             try {
-
                 URL url = new URL(urlParam + "logout/");
 
                 urlConnection = (HttpURLConnection) url.openConnection();
@@ -402,7 +374,6 @@ public class MainActivity extends AppCompatActivity {
                     return null;
                 }
                 output = buffer.toString();
-
             } catch (IOException e) {
                 Log.e(LOG_TAG, "", e);
                 return null;

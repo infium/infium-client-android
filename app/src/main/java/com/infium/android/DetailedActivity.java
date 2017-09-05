@@ -35,11 +35,9 @@ import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
-
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
-
 import java.io.BufferedReader;
 import java.io.DataOutputStream;
 import java.io.IOException;
@@ -51,9 +49,7 @@ import java.util.HashMap;
 import java.util.Locale;
 
 public class DetailedActivity extends AppCompatActivity {
-
     public final String LOG_TAG = DetailedActivity.class.getSimpleName();
-
     public final static String EXTRA_NAME = "com.infium.android.NAME";
     public final static String EXTRA_VALUE = "com.infium.android.VALUE";
     public final static String EXTRA_DESCRIPTION = "com.infium.android.DESCRIPTION";
@@ -63,41 +59,30 @@ public class DetailedActivity extends AppCompatActivity {
     public final static String EXTRA_TABLE_ROW_INDEX = "com.infium.android.TABLE_ROW_INDEX";
     public final static int INTENT_REQUEST_CODE_SEARCH_SELECTION = 1;
     public final static int INTENT_REQUEST_CODE_POP_ACTIVITY = 2;
-
     private String typeOfActivity = null;
-
     private String webPage = null;
-
     private MyCustomAdapter mAdapter;
-
     private String nextWindow = null;
     private String nextMethod = null;
     private String nextUrl = null;
     private String nextTitleBarColor = null;
-
     private String buttonLabel = null;
-
     private JSONArray structure = null;
     private JSONArray layout = null;
     private JSONObject visibleData = null;
     private JSONObject visibleDataDescription = null;
     private JSONObject hiddenData = null;
-
     private String title = "";
-
     private String token = null;
     private String company = null;
     private String baseUrl = null;
-
     private String actionBarColor = null;
 
     //private HashMap<String,View> convertViewMap = new HashMap<String, View>();
 
     private boolean showPrintIcon = false;
 
-
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
-
         if (requestCode == INTENT_REQUEST_CODE_SEARCH_SELECTION) {
             if (resultCode == RESULT_OK) {
                 String name = data.getStringExtra(EXTRA_NAME);
@@ -184,7 +169,6 @@ public class DetailedActivity extends AppCompatActivity {
                                 try{ dataRow.put(columnName, fieldValue); } catch (JSONException e){ Log.e(LOG_TAG, "Error", e); }
                                 try{ dataDescriptionRow.put(columnName, ""); } catch (JSONException e){ Log.e(LOG_TAG, "Error", e); }
                             }
-
                         }
                         dataTable.put(dataRow);
                         dataDescriptionTable.put(dataDescriptionRow);
@@ -192,9 +176,7 @@ public class DetailedActivity extends AppCompatActivity {
 
                     try{ visibleData.put(name,dataTable);} catch (JSONException e){ Log.e(LOG_TAG, "Error", e); }
                     try{ visibleDataDescription.put(name,dataDescriptionTable);} catch (JSONException e){ Log.e(LOG_TAG, "Error", e) ;}
-
                 }else{
-
                     JSONObject dataRow = new JSONObject();
                     JSONObject dataDescriptionRow = new JSONObject();
 
@@ -218,9 +200,7 @@ public class DetailedActivity extends AppCompatActivity {
                     dataDescriptionTable.put(dataDescriptionRow);
                     try{ visibleData.put(name,dataTable);} catch (JSONException e){ Log.e(LOG_TAG, "Error", e); }
                     try{ visibleDataDescription.put(name,dataDescriptionTable);} catch (JSONException e){ Log.e(LOG_TAG, "Error", e); }
-
                 }
-
             }else{
                 String name = row.optString("Name");
                 try{
@@ -287,9 +267,7 @@ public class DetailedActivity extends AppCompatActivity {
     }
 
     private void rebuildLayout(){
-
         if (structure != null){
-
             layout = new JSONArray();
 
             try{
@@ -394,9 +372,7 @@ public class DetailedActivity extends AppCompatActivity {
                         layout.put(newObject);
                     }
 
-
                     if (row.getString("Type").equals("Table")){
-
                         int numberOfElementsInValue = visibleData.getJSONArray(row.getString("Name")).length();
 
                         for (int b = 0; b < numberOfElementsInValue; b++) {
@@ -485,7 +461,6 @@ public class DetailedActivity extends AppCompatActivity {
                             }
                         }
 
-
                         if (row.getString("Type").equals("LabelWithLink")){
                             if (row.getString("Url") != null && (!row.getString("Url").equals(""))){
                                 String method = row.getString("Method");
@@ -515,8 +490,6 @@ public class DetailedActivity extends AppCompatActivity {
                                 imageView.setImageResource(R.drawable.ic_action_accept_dark);
                                 visibleData.put(row.optString("Name"), true);
                             }
-
-
                         }
 
                         if (row.getString("Type").equals("SearchSelection")){
@@ -566,7 +539,6 @@ public class DetailedActivity extends AppCompatActivity {
                                 field.setRawInputType(InputType.TYPE_CLASS_NUMBER | InputType.TYPE_NUMBER_FLAG_DECIMAL);
                             }
 
-
                             String name = row.getString("Name");
 
                             String tableParent = row.optString("TableParent", null);
@@ -611,13 +583,10 @@ public class DetailedActivity extends AppCompatActivity {
                                                 Log.e(LOG_TAG, "", e);
                                             }
                                         }
-
-
                                         getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_ALWAYS_HIDDEN);
                                     } catch (JSONException e) {
                                         Log.e(LOG_TAG, "Error", e);
                                     }
-
                                 }
                             });
 
@@ -627,14 +596,12 @@ public class DetailedActivity extends AppCompatActivity {
 
                             InputMethodManager imm = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
                             imm.toggleSoftInput(InputMethodManager.SHOW_FORCED, 0);
-
                         }
 
                         if (row.getString("Type").equals("Footer")){
                             String tableParent = row.getString("TableParent");
                             addEmptyRowToTable(tableParent);
                         }
-
                     }catch (JSONException e){
                         Log.e(LOG_TAG, "", e);
                     }
@@ -661,7 +628,6 @@ public class DetailedActivity extends AppCompatActivity {
                 savedInstanceState.putString("nextMethod", nextMethod);
                 savedInstanceState.putString("nextUrl", nextUrl);
                 savedInstanceState.putString("buttonLabel", buttonLabel);
-
 
                 if (hiddenData != null){
                     savedInstanceState.putString("hiddenData", hiddenData.toString());
@@ -692,7 +658,6 @@ public class DetailedActivity extends AppCompatActivity {
         }else{
             actionBarColor = titleBarColor;
         }
-
 
         getSupportActionBar().setBackgroundDrawable(new ColorDrawable(Color.parseColor(actionBarColor)));
 
@@ -802,7 +767,6 @@ public class DetailedActivity extends AppCompatActivity {
 
                 return true;
             }
-
         }
 
         if ((typeOfActivity != null) && (typeOfActivity.equals("HTML"))) {
@@ -834,7 +798,6 @@ public class DetailedActivity extends AppCompatActivity {
                 } catch (JSONException e) {
                     Log.e(LOG_TAG, "Error", e);
                 }
-
 
                 if (nextWindow.equals("New")) {
                     Intent intent = new Intent(getApplicationContext(), DetailedActivity.class);
@@ -868,7 +831,6 @@ public class DetailedActivity extends AppCompatActivity {
     }
 
     private class LoadFromServerFirst extends AsyncTask<Object, Void, JSONObject> {
-
         protected JSONObject doInBackground(Object... params) {
             String tokenParam = (String)params[0];
             String methodParam = (String)params[1];
@@ -951,7 +913,6 @@ public class DetailedActivity extends AppCompatActivity {
         }
 
         protected void onPostExecute(JSONObject outputObject) {
-
             String response = null;
             String contentType = null;
 
@@ -1013,7 +974,6 @@ public class DetailedActivity extends AppCompatActivity {
             }
 
             if (contentType.equals("text/html")) {
-
                 if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
                     try{
                         if ((outputObject.getString("Show-Print-Icon") != null)&&(outputObject.getString("Show-Print-Icon").equals("true"))){
@@ -1042,13 +1002,11 @@ public class DetailedActivity extends AppCompatActivity {
                 });
 
                 webView.loadData(response, "text/html; charset=UTF-8", null);
-
             }
         }
     }
 
     private class MyCustomAdapter extends BaseAdapter {
-
         private static final int TYPE_LABEL_WITH_LINK = 0;
         private static final int TYPE_FIELD = 1;
         private static final int TYPE_SEARCH_SELECTION = 2;
@@ -1067,7 +1025,6 @@ public class DetailedActivity extends AppCompatActivity {
 
         @Override
         public int getItemViewType(int position) {
-
             try{
                 JSONObject row = layout.getJSONObject(position);
                 if (row.getString("Type").equals("LabelValueLink")){
@@ -1279,7 +1236,6 @@ public class DetailedActivity extends AppCompatActivity {
             }
 
             if (type == TYPE_FIELD){
-
                 ViewHolderField2 holderField2 = (ViewHolderField2)convertView.getTag();
                 JSONObject obj = layout.optJSONObject(position);
                 String label = obj.optString("Label");
@@ -1295,7 +1251,6 @@ public class DetailedActivity extends AppCompatActivity {
                     holderField2.label.setText(label);
                     holderField2.text.setText(visibleData.optJSONArray(tableParent).optJSONObject(tableRowIndex).optString(name));
                 }
-
             }
 
             if (type == TYPE_SEARCH_SELECTION) {
@@ -1314,7 +1269,6 @@ public class DetailedActivity extends AppCompatActivity {
                     holderSearchSelection.label.setText(label);
                     holderSearchSelection.description.setText(visibleDataDescription.optJSONArray(tableParent).optJSONObject(tableRowIndex).optString(name));
                 }
-
             }
 
             if (type == TYPE_LABEL_HEADER) {
@@ -1341,7 +1295,6 @@ public class DetailedActivity extends AppCompatActivity {
                 }else{
                     holderLabelValue.label.setPadding((int)(scale * 0.5f * indent * 20), 0, 0, 0);
                 }
-
             }
 
             if (type == TYPE_FOOTER) {
@@ -1350,7 +1303,6 @@ public class DetailedActivity extends AppCompatActivity {
                 String label = obj.optString("Label");
                 holderFooter.label.setText(label);
             }
-
 
             return convertView;
         }
@@ -1392,7 +1344,6 @@ public class DetailedActivity extends AppCompatActivity {
     }
 
     class MutableWatcher implements TextWatcher {
-
         private int mPosition;
         private boolean mActive;
 
@@ -1509,7 +1460,6 @@ public class DetailedActivity extends AppCompatActivity {
                 runLocalActions(actions);
                 return;
             }
-
         }
     }
 

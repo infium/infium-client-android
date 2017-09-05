@@ -21,11 +21,9 @@ import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.TextView;
-
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
-
 import java.io.BufferedReader;
 import java.io.DataOutputStream;
 import java.io.IOException;
@@ -38,7 +36,6 @@ import java.util.Locale;
 public class SearchSelectionActivity extends AppCompatActivity {
 
     public final String LOG_TAG = SearchSelectionActivity.class.getSimpleName();
-
     public final static String EXTRA_NAME = "com.infium.android.NAME";
     public final static String EXTRA_POSITION = "com.infium.android.POSITION";
     public final static String EXTRA_TITLE = "com.infium.android.TITLE";
@@ -46,7 +43,6 @@ public class SearchSelectionActivity extends AppCompatActivity {
     public final static String EXTRA_SEARCH_URL = "com.infium.android.SEARCH_URL";
     public final static String EXTRA_TABLE_PARENT = "com.infium.android.TABLE_PARENT";
     public final static String EXTRA_TABLE_ROW_INDEX = "com.infium.android.TABLE_ROW_INDEX";
-
     private String name = null;
     private int position;
     private String defaultValue = null;
@@ -103,7 +99,6 @@ public class SearchSelectionActivity extends AppCompatActivity {
 
             if (searchResults != null){
                 rebuildLayout();
-
             }
         }
 
@@ -112,12 +107,10 @@ public class SearchSelectionActivity extends AppCompatActivity {
         }
 
         getSupportActionBar().setBackgroundDrawable(new ColorDrawable(Color.parseColor(intent.getStringExtra(MainActivity.EXTRA_TITLE_BAR_COLOR))));
-
     }
 
     @Override
     public void onSaveInstanceState(Bundle savedInstanceState) {
-
         savedInstanceState.putInt("searchSerialNumber", searchSerialNumber);
 
         if (searchResults != null){
@@ -140,11 +133,9 @@ public class SearchSelectionActivity extends AppCompatActivity {
         } catch (JSONException e) {Log.e(LOG_TAG, "Error", e);}
 
         new LoadFromServer().execute(token, "POST", searchUrl, company, body);
-
     }
 
     private class LoadFromServer extends AsyncTask<Object, Void, String> {
-
         protected String doInBackground(Object... params) {
             String tokenParam = (String)params[0];
             String methodParam = (String)params[1];
@@ -196,7 +187,6 @@ public class SearchSelectionActivity extends AppCompatActivity {
                     return "";
                 }
                 output = buffer.toString();
-
             } catch (IOException e) {
                 Log.e(LOG_TAG, "", e);
                 return "";
@@ -212,8 +202,6 @@ public class SearchSelectionActivity extends AppCompatActivity {
                     }
                 }
             }
-
-
             return output;
         }
 
@@ -245,7 +233,6 @@ public class SearchSelectionActivity extends AppCompatActivity {
     }
 
     private class MyCustomAdapter extends BaseAdapter {
-
         private static final int TYPE_LABEL = 0;
         private static final int TYPE_MAX_COUNT = 1;
 
@@ -325,7 +312,6 @@ public class SearchSelectionActivity extends AppCompatActivity {
 
                 holder.value = valueObj;
             }
-
             return convertView;
         }
     }
@@ -337,7 +323,6 @@ public class SearchSelectionActivity extends AppCompatActivity {
     }
 
     public void rebuildLayout(){
-
         MyCustomAdapter mAdapter = new MyCustomAdapter();
 
         ListView listView = (ListView)findViewById(R.id.searchList);
