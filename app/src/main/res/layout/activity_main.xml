@@ -15,18 +15,17 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent">
 
-            <!-- EditText
+            <EditText
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:textColor="@color/textColor"
                 android:id="@+id/url"
-                android:hint="URL"
+                android:hint="Server URL"
                 android:layout_marginTop="2dp"
                 android:layout_marginRight="10dp"
                 android:layout_marginBottom="2dp"
                 android:layout_marginLeft="10dp"
-                android:autoText="false"
-                android:inputType="textNoSuggestions" / -->
+                android:inputType="textUri" />
 
             <!-- EditText
                 android:layout_width="match_parent"

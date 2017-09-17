@@ -77,8 +77,10 @@ public class MainActivity extends AppCompatActivity {
     private void redrawButtons(){
         SharedPreferences prefs = getSharedPreferences(getString(R.string.preference_file_key), Context.MODE_PRIVATE);
         String token = prefs.getString("token", "");
+        String url = prefs.getString("url", "");
 
         if (token.equals("")){
+            EditText urlField = findViewById(R.id.url);
             EditText usernameField = (EditText)findViewById(R.id.username);
             EditText passwordField = (EditText)findViewById(R.id.password);
 
@@ -91,6 +93,7 @@ public class MainActivity extends AppCompatActivity {
             loginLogoutButton.setText("Login");
             versionText.setText("v " + BuildConfig.VERSION_NAME);
 
+            urlField.setVisibility(View.VISIBLE);
             usernameField.setVisibility(View.VISIBLE);
             passwordField.setVisibility(View.VISIBLE);
             versionText.setVisibility(View.VISIBLE);
@@ -98,9 +101,17 @@ public class MainActivity extends AppCompatActivity {
             sessionActiveText.setVisibility(View.GONE);
             menuButton.setVisibility(View.GONE);
 
+            urlField.setEnabled(true);
             usernameField.setEnabled(true);
             passwordField.setEnabled(true);
+
+            if (url.equals("")){
+                urlField.setText(DEFAULT_URL);
+            }else{
+                urlField.setText(url);
+            }
         }else{
+            EditText urlField = findViewById(R.id.url);
             EditText usernameField = (EditText)findViewById(R.id.username);
             EditText passwordField = (EditText)findViewById(R.id.password);
 
@@ -114,6 +125,7 @@ public class MainActivity extends AppCompatActivity {
                 loginLogoutButton.setText("Logout");
                 versionText.setText("v " + BuildConfig.VERSION_NAME);
 
+                urlField.setVisibility(View.GONE);
                 usernameField.setVisibility(View.GONE);
                 passwordField.setVisibility(View.GONE);
 
@@ -123,6 +135,7 @@ public class MainActivity extends AppCompatActivity {
 
                 menuButton.setVisibility(View.VISIBLE);
 
+                urlField.setEnabled(false);
                 usernameField.setEnabled(false);
                 passwordField.setEnabled(false);
 
@@ -179,9 +192,11 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void loginButtonTapped(){
+        EditText urlField = findViewById(R.id.url);
         EditText usernameField = (EditText)findViewById(R.id.username);
         EditText passwordField = (EditText)findViewById(R.id.password);
 
+        String url = urlField.getText().toString();
         String username = usernameField.getText().toString();
         String password = passwordField.getText().toString();
 
@@ -201,7 +216,7 @@ public class MainActivity extends AppCompatActivity {
                     }
                 }
             }else{
-                new Login().execute(DEFAULT_URL, strings[1], strings[0], password);
+                new Login().execute(url, strings[1], strings[0], password);
             }
         }
     }
