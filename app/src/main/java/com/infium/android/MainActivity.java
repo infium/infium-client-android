@@ -81,14 +81,14 @@ public class MainActivity extends AppCompatActivity {
 
         if (token.equals("")){
             EditText urlField = findViewById(R.id.url);
-            EditText usernameField = (EditText)findViewById(R.id.username);
-            EditText passwordField = (EditText)findViewById(R.id.password);
+            EditText usernameField = findViewById(R.id.username);
+            EditText passwordField = findViewById(R.id.password);
 
-            TextView sessionActiveText = (TextView)findViewById(R.id.sessionActiveText);
-            TextView versionText = (TextView)findViewById(R.id.versionText);
+            TextView sessionActiveText = findViewById(R.id.sessionActiveText);
+            TextView versionText = findViewById(R.id.versionText);
 
-            Button loginLogoutButton = (Button)findViewById(R.id.loginLogoutButton);
-            Button menuButton = (Button)findViewById(R.id.menu);
+            Button loginLogoutButton = findViewById(R.id.loginLogoutButton);
+            Button menuButton = findViewById(R.id.menu);
 
             loginLogoutButton.setText("Login");
             versionText.setText("v " + BuildConfig.VERSION_NAME);
@@ -112,14 +112,14 @@ public class MainActivity extends AppCompatActivity {
             }
         }else{
             EditText urlField = findViewById(R.id.url);
-            EditText usernameField = (EditText)findViewById(R.id.username);
-            EditText passwordField = (EditText)findViewById(R.id.password);
+            EditText usernameField = findViewById(R.id.username);
+            EditText passwordField = findViewById(R.id.password);
 
-            TextView sessionActiveText = (TextView)findViewById(R.id.sessionActiveText);
-            TextView versionText = (TextView)findViewById(R.id.versionText);
+            TextView sessionActiveText = findViewById(R.id.sessionActiveText);
+            TextView versionText = findViewById(R.id.versionText);
 
-            Button loginLogoutButton = (Button)findViewById(R.id.loginLogoutButton);
-            Button menuButton = (Button)findViewById(R.id.menu);
+            Button loginLogoutButton = findViewById(R.id.loginLogoutButton);
+            Button menuButton = findViewById(R.id.menu);
 
             try{
                 loginLogoutButton.setText("Logout");
@@ -193,8 +193,8 @@ public class MainActivity extends AppCompatActivity {
 
     private void loginButtonTapped(){
         EditText urlField = findViewById(R.id.url);
-        EditText usernameField = (EditText)findViewById(R.id.username);
-        EditText passwordField = (EditText)findViewById(R.id.password);
+        EditText usernameField = findViewById(R.id.username);
+        EditText passwordField = findViewById(R.id.password);
 
         String url = urlField.getText().toString();
         String username = usernameField.getText().toString();
@@ -327,8 +327,8 @@ public class MainActivity extends AppCompatActivity {
             String token = prefs.getString("token", null);
 
             if (token != null){
-                EditText usernameField = (EditText)findViewById(R.id.username);
-                EditText passwordField = (EditText)findViewById(R.id.password);
+                EditText usernameField = findViewById(R.id.username);
+                EditText passwordField = findViewById(R.id.password);
 
                 usernameField.setText("");
                 passwordField.setText("");
