@@ -121,12 +121,12 @@ public class DetailedActivity extends AppCompatActivity {
                     Log.e(LOG_TAG, "Error", e);
                 }
 
-                ListView listView = (ListView) findViewById(R.id.listView);
+                ListView listView = findViewById(R.id.listView);
 
                 View v = listView.getChildAt(position - listView.getFirstVisiblePosition());
 
                 if (v != null) {
-                    TextView someText = (TextView) v.findViewById(R.id.cell_field_search_selection_description);
+                    TextView someText = v.findViewById(R.id.cell_field_search_selection_description);
                     someText.setText(description);
                 }
             }
@@ -446,7 +446,7 @@ public class DetailedActivity extends AppCompatActivity {
         if (mAdapter == null){
             mAdapter = new MyCustomAdapter();
 
-            ListView listView = (ListView)findViewById(R.id.listView);
+            ListView listView = findViewById(R.id.listView);
             listView.setItemsCanFocus(true);
             listView.setAdapter(mAdapter);
 
@@ -495,7 +495,7 @@ public class DetailedActivity extends AppCompatActivity {
 
                         if (row.getString("Type").equals("LabelTrueFalse")){
 
-                            ImageView imageView = (ImageView)view.findViewById(R.id.cell_label_true_false_imageView);
+                            ImageView imageView = view.findViewById(R.id.cell_label_true_false_imageView);
 
                             boolean value = visibleData.optBoolean(row.optString("Name"));
 
@@ -546,8 +546,8 @@ public class DetailedActivity extends AppCompatActivity {
                             View newView = inflater.inflate(R.layout.flow_ui_dialog_field, null);
                             builder.setView(newView);
 
-                            TextView label = (TextView)newView.findViewById(R.id.label);
-                            final EditText field = (EditText)newView.findViewById(R.id.field);
+                            TextView label = newView.findViewById(R.id.label);
+                            final EditText field = newView.findViewById(R.id.field);
 
                             label.setBackgroundColor(Color.parseColor(actionBarColor));
 
@@ -725,7 +725,7 @@ public class DetailedActivity extends AppCompatActivity {
                 webPage = savedInstanceState.getString("webPage");
                 showPrintIcon = savedInstanceState.getBoolean("showPrintIcon");
 
-                WebView webView = (WebView)findViewById(R.id.webView);
+                WebView webView = findViewById(R.id.webView);
 
                 webView.setWebViewClient(new WebViewClient() {
                     @Override
@@ -838,7 +838,7 @@ public class DetailedActivity extends AppCompatActivity {
 
         if ((typeOfActivity != null) && (typeOfActivity.equals("HTML"))) {
             if (id == R.id.button) {
-                WebView webView = (WebView)findViewById(R.id.webView);
+                WebView webView = findViewById(R.id.webView);
                 createWebPrintJob(webView);
             }
         }
@@ -1007,7 +1007,7 @@ public class DetailedActivity extends AppCompatActivity {
 
                 webPage = response;
 
-                WebView webView = (WebView)findViewById(R.id.webView);
+                WebView webView = findViewById(R.id.webView);
 
                 webView.setWebViewClient(new WebViewClient() {
                     @Override
@@ -1154,53 +1154,53 @@ public class DetailedActivity extends AppCompatActivity {
                     case TYPE_LABEL_WITH_LINK:
                         ViewHolder holderLabel = new ViewHolder();
                         convertView = mInflater.inflate(R.layout.flow_ui_listview_cell_label_with_link, parent, false);
-                        holderLabel.icon = (TextView)convertView.findViewById(R.id.cell_label_with_link_icon);
-                        holderLabel.textView = (TextView)convertView.findViewById(R.id.cell_label_with_link_textView);
+                        holderLabel.icon = convertView.findViewById(R.id.cell_label_with_link_icon);
+                        holderLabel.textView = convertView.findViewById(R.id.cell_label_with_link_textView);
                         convertView.setTag(holderLabel);
                         break;
                     case TYPE_LABEL_TRUE_FALSE:
                         ViewHolderLabelTrueFalse holderLabelTrueFalse = new ViewHolderLabelTrueFalse();
                         convertView = mInflater.inflate(R.layout.flow_ui_listview_cell_label_true_false, parent, false);
-                        holderLabelTrueFalse.label = (TextView)convertView.findViewById(R.id.cell_label_true_false_textView);
-                        holderLabelTrueFalse.image = (ImageView)convertView.findViewById(R.id.cell_label_true_false_imageView);
+                        holderLabelTrueFalse.label = convertView.findViewById(R.id.cell_label_true_false_textView);
+                        holderLabelTrueFalse.image = convertView.findViewById(R.id.cell_label_true_false_imageView);
                         convertView.setTag(holderLabelTrueFalse);
                         break;
                     case TYPE_FIELD:
 
                         ViewHolderField2 holderField2 = new ViewHolderField2();
                         convertView = mInflater.inflate(R.layout.flow_ui_listview_cell_field2, parent, false);
-                        holderField2.label = (TextView)convertView.findViewById(R.id.cell_field_label);
-                        holderField2.text = (TextView)convertView.findViewById(R.id.cell_field_text);
+                        holderField2.label = convertView.findViewById(R.id.cell_field_label);
+                        holderField2.text = convertView.findViewById(R.id.cell_field_text);
                         convertView.setTag(holderField2);
                         break;
 
                     case TYPE_SEARCH_SELECTION:
                         ViewHolderSearchSelection holderSearchSelection = new ViewHolderSearchSelection();
                         convertView = mInflater.inflate(R.layout.flow_ui_listview_cell_search_selection, parent, false);
-                        holderSearchSelection.label = (TextView)convertView.findViewById(R.id.cell_field_search_selection_label);
-                        holderSearchSelection.description = (TextView)convertView.findViewById(R.id.cell_field_search_selection_description);
+                        holderSearchSelection.label = convertView.findViewById(R.id.cell_field_search_selection_label);
+                        holderSearchSelection.description = convertView.findViewById(R.id.cell_field_search_selection_description);
                         convertView.setTag(holderSearchSelection);
                         break;
 
                     case TYPE_LABEL_HEADER:
                         ViewHolderLabelHeader holderHeader = new ViewHolderLabelHeader();
                         convertView = mInflater.inflate(R.layout.flow_ui_listview_cell_header, parent, false);
-                        holderHeader.label = (TextView)convertView.findViewById(R.id.cell_header_textView);
+                        holderHeader.label = convertView.findViewById(R.id.cell_header_textView);
                         convertView.setTag(holderHeader);
                         break;
 
                     case TYPE_LABEL_VALUE:
                         ViewHolderLabelValue holderLabelValue = new ViewHolderLabelValue();
                         convertView = mInflater.inflate(R.layout.flow_ui_listview_cell_label_value, parent, false);
-                        holderLabelValue.label = (TextView)convertView.findViewById(R.id.cell_label_value_label);
-                        holderLabelValue.value = (TextView)convertView.findViewById(R.id.cell_label_value_value);
+                        holderLabelValue.label = convertView.findViewById(R.id.cell_label_value_label);
+                        holderLabelValue.value = convertView.findViewById(R.id.cell_label_value_value);
                         convertView.setTag(holderLabelValue);
                         break;
 
                     case TYPE_FOOTER:
                         ViewHolderFooter holderFooter = new ViewHolderFooter();
                         convertView = mInflater.inflate(R.layout.flow_ui_listview_cell_footer, parent, false);
-                        holderFooter.label = (TextView)convertView.findViewById(R.id.cell_footer_textView);
+                        holderFooter.label = convertView.findViewById(R.id.cell_footer_textView);
                         convertView.setTag(holderFooter);
                         break;
 

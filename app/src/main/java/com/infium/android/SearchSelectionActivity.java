@@ -95,7 +95,7 @@ public class SearchSelectionActivity extends AppCompatActivity {
 
         setTitle(intent.getStringExtra(EXTRA_TITLE));
 
-        EditText editText = (EditText) findViewById(R.id.searchInput);
+        EditText editText = findViewById(R.id.searchInput);
 
         editText.addTextChangedListener(new TextWatcher() {
             public void afterTextChanged(Editable s) {
@@ -305,8 +305,8 @@ public class SearchSelectionActivity extends AppCompatActivity {
                     case TYPE_LABEL:
                         ViewHolder holderLabel = new ViewHolder();
                         convertView = mInflater.inflate(R.layout.flow_ui_search_selection_listview_cell_label, parent, false);
-                        holderLabel.description = (TextView)convertView.findViewById(R.id.flow_ui_search_selection_cell_description);
-                        holderLabel.image = (ImageView)convertView.findViewById(R.id.flow_ui_search_selection_cell_image);
+                        holderLabel.description = convertView.findViewById(R.id.flow_ui_search_selection_cell_description);
+                        holderLabel.image = convertView.findViewById(R.id.flow_ui_search_selection_cell_image);
                         convertView.setTag(holderLabel);
                         break;
                 }
@@ -341,7 +341,7 @@ public class SearchSelectionActivity extends AppCompatActivity {
     public void rebuildLayout(){
         MyCustomAdapter mAdapter = new MyCustomAdapter();
 
-        ListView listView = (ListView)findViewById(R.id.searchList);
+        ListView listView = findViewById(R.id.searchList);
         listView.setItemsCanFocus(true);
         listView.setAdapter(mAdapter);
 
