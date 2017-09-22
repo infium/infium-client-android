@@ -1149,7 +1149,6 @@ public class DetailedActivity extends AppCompatActivity {
         @Override
         public View getView(int position, View convertView, ViewGroup parent) {
             int type = getItemViewType(position);
-            if (true) {
                 switch (type) {
                     case TYPE_LABEL_WITH_LINK:
                         ViewHolder holderLabel = new ViewHolder();
@@ -1203,9 +1202,7 @@ public class DetailedActivity extends AppCompatActivity {
                         holderFooter.label = convertView.findViewById(R.id.cell_footer_textView);
                         convertView.setTag(holderFooter);
                         break;
-
                 }
-            }
 
             if (type == TYPE_LABEL_WITH_LINK) {
                 ViewHolder holder = (ViewHolder)convertView.getTag();
