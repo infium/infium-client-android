@@ -218,23 +218,17 @@ public class MainActivity extends AppCompatActivity {
 
         String[] strings = username.split("@");
 
-        if (strings.length < 2){
+        if (strings.length != 2) {
             Toast.makeText(getApplicationContext(), "The username must be in the format 'name@123456'", Toast.LENGTH_LONG).show();
-        }else{
-            if (strings.length > 2){
-                if (strings[2].substring(0,8).equals("https://")){
-                    new Login().execute(strings[2], strings[1], strings[0], password);
-                }else{
-                    if ((strings.length > 3)&&(strings[3].equals("NOSSL"))){
-                        new Login().execute(strings[2], strings[1], strings[0], password);
-                    }else{
-                        Toast.makeText(getApplicationContext(), "The server URL must start with 'https://'", Toast.LENGTH_LONG).show();
-                    }
-                }
-            }else{
-                new Login().execute(url, strings[1], strings[0], password);
-            }
+            return;
         }
+
+        if (!url.substring(0,8).equals("https://")) {
+            Toast.makeText(getApplicationContext(), "The server URL must start with 'https://'", Toast.LENGTH_LONG).show();
+            return;
+        }
+
+        new Login().execute(url, strings[1], strings[0], password);
     }
 
     private class Login extends AsyncTask<Object, Void, String> {
