@@ -50,7 +50,6 @@ import java.net.URL;
 import java.util.Locale;
 
 public class SearchSelectionActivity extends AppCompatActivity {
-
     public final String LOG_TAG = SearchSelectionActivity.class.getSimpleName();
     public final static String EXTRA_NAME = "com.infium.android.NAME";
     public final static String EXTRA_POSITION = "com.infium.android.POSITION";

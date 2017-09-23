@@ -59,8 +59,7 @@ public class MainActivity extends AppCompatActivity {
 
     public synchronized static String id(Context context) {
         if (uniqueID == null) {
-            SharedPreferences sharedPrefs = context.getSharedPreferences(
-                    PREF_UNIQUE_ID, Context.MODE_PRIVATE);
+            SharedPreferences sharedPrefs = context.getSharedPreferences(PREF_UNIQUE_ID, Context.MODE_PRIVATE);
             uniqueID = sharedPrefs.getString(PREF_UNIQUE_ID, null);
             if (uniqueID == null) {
                 uniqueID = UUID.randomUUID().toString();
@@ -76,9 +75,11 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
         if (getSupportActionBar() != null){
             getSupportActionBar().setBackgroundDrawable(new ColorDrawable(Color.parseColor(DEFAULT_COLOR)));
         }
+
         setTitle("Welcome");
         redrawButtons();
         getSupportActionBar().setElevation(0);
@@ -154,7 +155,6 @@ public class MainActivity extends AppCompatActivity {
                 urlField.setEnabled(false);
                 usernameField.setEnabled(false);
                 passwordField.setEnabled(false);
-
             }catch (Exception e){
                 Log.e(LOG_TAG, "", e);
             }
@@ -427,7 +427,6 @@ public class MainActivity extends AppCompatActivity {
         }
 
         protected void onPostExecute(JSONObject outputObject) {
-
             SharedPreferences.Editor editor = getSharedPreferences(getString(R.string.preference_file_key), Context.MODE_PRIVATE).edit();
             editor.putString("token", null);
             editor.apply();

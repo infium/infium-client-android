@@ -207,7 +207,6 @@ public class DetailedActivity extends AppCompatActivity {
                             try{ dataRow.put(columnName, ""); } catch (JSONException e){ Log.e(LOG_TAG, "Error", e); }
                             try{ dataDescriptionRow.put(columnName, ""); } catch (JSONException e){ Log.e(LOG_TAG, "Error", e); }
                         }
-
                     }
 
                     JSONArray dataTable = new JSONArray();
@@ -454,7 +453,6 @@ public class DetailedActivity extends AppCompatActivity {
                 @Override
                 public void onItemClick(AdapterView<?> parent, View view, final int position, long id) {
                     try{
-
                         JSONObject row = layout.getJSONObject(position);
 
                         if (row.getString("Type").equals("LabelValueLink")){
@@ -494,7 +492,6 @@ public class DetailedActivity extends AppCompatActivity {
                         }
 
                         if (row.getString("Type").equals("LabelTrueFalse")){
-
                             ImageView imageView = view.findViewById(R.id.cell_label_true_false_imageView);
 
                             boolean value = visibleData.optBoolean(row.optString("Name"));
@@ -509,7 +506,6 @@ public class DetailedActivity extends AppCompatActivity {
                         }
 
                         if (row.getString("Type").equals("SearchSelection")){
-
                             String name = row.getString("Name");
 
                             String tableParent = row.optString("TableParent", null);
@@ -538,7 +534,6 @@ public class DetailedActivity extends AppCompatActivity {
                         }
 
                         if (row.getString("Type").equals("Field")){
-
                             AlertDialog.Builder builder = new AlertDialog.Builder(DetailedActivity.this);
 
                             LayoutInflater inflater = DetailedActivity.this.getLayoutInflater();
@@ -689,7 +684,6 @@ public class DetailedActivity extends AppCompatActivity {
 
         if (savedInstanceState != null) {
             if (savedInstanceState.getString("typeOfActivity").equals("JSON")) {
-
                 setContentView(R.layout.activity_flow_ui);
 
                 try {
@@ -708,7 +702,6 @@ public class DetailedActivity extends AppCompatActivity {
                     if (savedInstanceState.getString("hiddenData") != null) {
                         hiddenData = new JSONObject(savedInstanceState.getString("hiddenData"));
                     }
-
                 } catch (JSONException e) {
                     Log.e(LOG_TAG, "Error", e);
                 }
@@ -716,7 +709,6 @@ public class DetailedActivity extends AppCompatActivity {
             }
 
             if (savedInstanceState.getString("typeOfActivity").equals("HTML")) {
-
                 if (typeOfActivity == null) {
                     setContentView(R.layout.activity_flow_ui_html);
                     typeOfActivity = "HTML";
@@ -735,17 +727,14 @@ public class DetailedActivity extends AppCompatActivity {
                 });
 
                 webView.loadData(webPage, "text/html; charset=UTF-8", null);
-
             }
         }else{
             new LoadFromServerFirst().execute(token, method, url, company, body);
         }
-
     }
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
-
         if ((typeOfActivity != null) && (typeOfActivity.equals("JSON"))){
             if ((nextMethod != null) && (nextUrl != null) && (buttonLabel != null) && (!nextMethod.equals("")) && (!nextUrl.equals("")) && (!buttonLabel.equals(""))){
                 getMenuInflater().inflate(R.menu.flow_ui, menu);
@@ -803,7 +792,6 @@ public class DetailedActivity extends AppCompatActivity {
         int id = item.getItemId();
 
         if ((typeOfActivity != null) && (typeOfActivity.equals("JSON"))) {
-
             if (id == R.id.button) {
                 JSONObject body = new JSONObject();
                 try {
@@ -898,7 +886,6 @@ public class DetailedActivity extends AppCompatActivity {
                     return null;
                 }
                 output = buffer.toString();
-
             } catch (IOException e) {
                 Log.e(LOG_TAG, "", e);
                 return null;
@@ -1031,7 +1018,6 @@ public class DetailedActivity extends AppCompatActivity {
         private static final int TYPE_LABEL_TRUE_FALSE = 5;
         private static final int TYPE_LABEL_VALUE = 6;
         private static final int TYPE_LABEL_VALUE_LINK = 7;
-
         private static final int TYPE_MAX_COUNT = 8;
         private LayoutInflater mInflater;
 
