@@ -1415,14 +1415,12 @@ public class DetailedActivity extends AppCompatActivity {
     private JSONArray JSONArrayRemoveAtIndex(JSONArray jsonArray, int index){
         JSONArray list = new JSONArray();
         int len = jsonArray.length();
-        if (jsonArray != null) {
-            for (int i=0;i<len;i++)
-            {
-                if (i != index)
-                {
-                    try{ list.put(jsonArray.get(i)); }catch (JSONException e){
-                        Log.e(LOG_TAG, "Error", e);
-                    }
+        for (int i=0;i<len;i++) {
+            if (i != index) {
+                try{
+                    list.put(jsonArray.get(i));
+                }catch (JSONException e){
+                    Log.e(LOG_TAG, "Error", e);
                 }
             }
         }
