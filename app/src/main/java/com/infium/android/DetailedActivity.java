@@ -1307,42 +1307,42 @@ public class DetailedActivity extends AppCompatActivity {
         }
     }
 
-    public static class ViewHolderSearchSelection {
+    private static class ViewHolderSearchSelection {
         public TextView label;
         public TextView description;
     }
 
-    public static class ViewHolderField2 {
+    private static class ViewHolderField2 {
         public TextView label;
         public TextView text;
     }
 
-    public static class ViewHolderLabelHeader {
+    private static class ViewHolderLabelHeader {
         public TextView label;
     }
 
-    public static class ViewHolderLabelValue {
+    private static class ViewHolderLabelValue {
         public TextView label;
         public TextView value;
     }
 
-    public static class ViewHolderFooter {
+    private static class ViewHolderFooter {
         public TextView label;
     }
 
-    public static class ViewHolderLabelTrueFalse {
+    private static class ViewHolderLabelTrueFalse {
         public TextView label;
         public ImageView image;
     }
 
-    public static class ViewHolder {
+    private static class ViewHolder {
         public TextView icon;
         public TextView textView;
         public EditText editText;
         public MutableWatcher mWatcher;
     }
 
-    class MutableWatcher implements TextWatcher {
+    private class MutableWatcher implements TextWatcher {
         private int mPosition;
         private boolean mActive;
 
